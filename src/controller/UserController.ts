@@ -15,6 +15,7 @@ const userBusiness = new UserBusiness(
 
 export class UserController {
    async signup(req: Request, res: Response) {
+
       try {
 
          const input: UserInputDTO = {
@@ -44,7 +45,7 @@ export class UserController {
             password: req.body.password
          }
 
-         const token = await userBusiness.getUserByEmail(loginData)
+         const token = await userBusiness.login(loginData)
 
          res.status(200).send({ token })
 

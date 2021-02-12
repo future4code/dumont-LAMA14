@@ -1,5 +1,5 @@
-import { CustomError } from "../business/error/CustomError";
-import { BaseDatabase } from "./BaseDatabase";
+import { CustomError } from "../business/error/CustomError"
+import { BaseDatabase } from "./BaseDatabase"
 
 export class BandDatabase extends BaseDatabase {
 
@@ -8,7 +8,7 @@ export class BandDatabase extends BaseDatabase {
     public async createBand(
         id: string,
         name: string,
-        musicGenre: string,
+        music_genre: string,
         responsible: string
     ): Promise<void> {
         try {
@@ -16,10 +16,34 @@ export class BandDatabase extends BaseDatabase {
                 .insert({
                     id,
                     name,
-                    musicGenre,
+                    music_genre,
                     responsible
                 })
                 .into(BandDatabase.TABLE_NAME)
+        } catch (error) {
+            throw new CustomError(500, "An unexpected error ocurred")
+        }
+    }
+
+    public async getBandById(id: string) {
+        try {
+            const result = await BaseDatabase.connection
+                .select("*")
+                .from(BandDatabase.TABLE_NAME)
+                .where({ id })
+            return result[0]
+        } catch (error) {
+            throw new CustomError(500, "An unexpected error ocurred")
+        }
+    }
+
+    public async getBandByName(name: string) {
+        try {
+            const result = await BaseDatabase.connection
+                .select("*")
+                .from(BandDatabase.TABLE_NAME)
+                .where({ name })
+            return result[0]
         } catch (error) {
             throw new CustomError(500, "An unexpected error ocurred")
         }
