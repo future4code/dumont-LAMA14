@@ -1,0 +1,43 @@
+### cadastro
+
+    post http://localhost:3003/user/signup
+    Content-Type: application/json
+
+    {
+        "email": "mateus@email.com",
+        "name": "Mateus",
+        "password": "111111",
+        "role": "NORMAL"
+    }
+
+### login
+
+    post http://localhost:3003/user/login
+    Content-Type: application/json
+
+    { "email": "nohah@email.com", "password": "123456" }
+
+    # { "email": "joao@email.com", "password": "654321" }
+
+    # { "email": "mateus@email.com", "password": "111111" }
+
+### registrar banda
+
+    post http://localhost:3003/band/register
+    Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkOTJlMDEwLTRhZjYtNGZjMS05MGNlLTFhYWFjMGRmYjMwMCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYxMzE1MjQ4MSwiZXhwIjoxNjEzMjM4ODgxfQ.WWtDSxnkiTQg4uYnRWdl3gFx_qI8cB8Vkob--0MPP6E
+    Content-Type: application/json
+
+    {
+        "name": "BTS",
+        "musicGenre": "Pop",
+        "responsible": "-"
+    }
+
+### ver detalhes da banda
+
+get http://localhost:3003/band/detail
+Content-Type: application/json
+
+{
+    "id": "c9b2a6f2-02fc-4c29-9d48-02b662be8637"
+}
